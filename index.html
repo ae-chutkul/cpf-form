@@ -82,6 +82,21 @@
             </div>
           </div>
         </div>
+
+        <!-- Promotion Modal -->
+        <div class="modal fade" id="promoModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">🎉 โปรโมชั่นพิเศษ</h5>
+              </div>
+              <div class="modal-body text-center">
+                <p id="promoMessage"></p>
+                <p class="fw-bold">โค้ดส่วนลด: <span class="text-success">PROMO123</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -91,6 +106,7 @@
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsXatTwsLSGvFdQ0RD1IYT-UJnQN8SXJgx3CS80UMHLrjBhjsroskd39K0puHD53jk/exec";
 
     let consentChoice = "";  
+    let userName = "";
 
     // Open modal for both consent choices
     function openModal(choice){
