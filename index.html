@@ -17,11 +17,11 @@
 <body class="bg-light">
 
   <!-- Centered container -->
-  <div class="container vh-100 d-flex justify-content-center align-items-center">
-    <div class="card shadow-lg w-100" style="max-width: 600px;">
-      <div class="card-body p-4">
+  <div class="container vh-100 d-flex justify-content-center align-items-center p-2">
+    <div class="card shadow-lg w-100 w-sm-75 w-md-50 w-lg-50">
+      <div class="card-body p-4 p-sm-4">
         <!-- Heading -->
-        <h3 class="card-title text-center mb-4">
+        <h3 class="card-title text-center mb-4 fs-5 fs-sm-4">
           แบบสอบถามข้อมูลผู้เข้าร่วมทดลองชิมสินค้า
         </h3>
 
@@ -120,8 +120,6 @@
         const gender = document.getElementById('gender').value.trim();
         const age = document.getElementById('age').value.trim();
         const tel = document.getElementById('tel').value.trim();
-        
-        const telString = String(tel) ? tel.value : "";
       }
 
       // Show scoring modal
@@ -141,8 +139,6 @@
       const gender = document.getElementById('gender').value.trim();
       const age = document.getElementById('age').value.trim();
       const tel = document.getElementById('tel').value.trim();
-
-      const telString = String(tel) ? tel.value : "";
 
       const payload = {
         name: name,
