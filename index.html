@@ -102,6 +102,7 @@
     </div>
   <script>
     // const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsXatTwsLSGvFdQ0RD1IYT-UJnQN8SXJgx3CS80UMHLrjBhjsroskd39K0puHD53jk/exec";
+
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7JL-EbEuwaM638ejrG9bla5GuNG9mmnki9-uHt4QPkdcxN51AHbeUAKHQhz2WuvQQ/exec"
 
     let userName = "";
@@ -149,9 +150,6 @@
 
       fetch(SCRIPT_URL, {
         method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
         body: JSON.stringify(payload)
       })
       .then(response_obj => response_obj.json())        // Wait response + parse JSON
