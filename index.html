@@ -151,9 +151,10 @@
 
       fetch(SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors',
         body: JSON.stringify(payload)
       })
-      .then(response_obj => response_obj.json())        // Wait response + parse JSON
+      // .then(response_obj => response_obj.json())        // Wait response + parse JSON
       .then(() => {                                     // Use the JSON data for showing on Promotion Modal
         // Close scoring modal
         const scoringModal = bootstrap.Modal.getInstance(document.getElementById('scoringModal'));
