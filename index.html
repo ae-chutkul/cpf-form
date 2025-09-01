@@ -57,7 +57,7 @@
           </div>
 
           <div class="d-flex justify-content-end gap-2">
-            <button type="button" class="btn btn-danger" onclick="openModal('ไม่ยินยอม')">ไม่ยินยอม</button>
+            <button type="button" class="btn btn-danger" onclick="submitForm('ไม่ยินยอม')">ไม่ยินยอม</button>
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
@@ -109,11 +109,12 @@
     let userName = "";
 
     // Open modal for both consent choices
-    function openModal(choice){
-      consentChoice = choice;
+    function submitForm(userConsent){
+      consentStatus = userConsent;
+      userName = document.getElementById('name').value.trim();
 
       // Validate the fields when user click Submit
-      if(choice === "ยินยอม"){
+      if(userConsent === "ยินยอม"){
         const name = document.getElementById('name').value.trim();
         const gender = document.getElementById('gender').value.trim();
         const age = document.getElementById('age').value.trim();
@@ -133,7 +134,7 @@
     // Handle form submit
     function handleSubmit(e){
       e.preventDefault();
-      openModal("ยินยอม");
+      submitForm("ยินยอม");
     }
 
     // Submit Score
