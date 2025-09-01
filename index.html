@@ -54,7 +54,7 @@
 
           <div class="mb-3">
             <label class="form-label">เบอร์โทรศัพท์</label>
-            <input type="tel" id="tel" class="form-control" required pattern="[0-9]{10}">
+            <input type="tel" id="tel" class="form-control" pattern="[0-9]{10}">
           </div>
 
           <div class="d-flex justify-content-end gap-2">
@@ -100,69 +100,80 @@
         </div>
       </div>
     </div>
-
-   
-
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsXatTwsLSGvFdQ0RD1IYT-UJnQN8SXJgx3CS80UMHLrjBhjsroskd39K0puHD53jk/exec";
-
-    let consentChoice = "";  
+    
     let userName = "";
+    let consentChoice = "";
 
-    // Open modal for both consent choices
-    function submitForm(userConsent){
-      consentStatus = userConsent;
-      userName = document.getElementById('name').value.trim();
+    // Function to handle both "ยินยอม" and "ไม่ยินยอม"
+    function submitForm(userConsent) {
 
-      // Validate the fields when user click Submit
-      if(userConsent === "ยินยอม"){
+      consentChoice = userConsent;
+      
+      // Validate required fields only if ยินยอม
+      if (userConsent === "ยินยอม") {
         const name = document.getElementById('name').value.trim();
         const gender = document.getElementById('gender').value.trim();
         const age = document.getElementById('age').value.trim();
         const tel = document.getElementById('tel').value.trim();
-
-        if(!name || !gender || !age || !tel){
-          alert("กรุณากรอกข้อมูลให้ครบถ้วน");
-          return;
-        }
       }
 
-      // Display the modal
-      const modal = new bootstrap.Modal(document.getElementById('scoringModal'));
-      modal.show();
+      // Show scoring modal
+      const scoringModal = new bootstrap.Modal(document.getElementById('scoringModal'));
+      scoringModal.show();
     }
 
-    // Handle form submit
-    function handleSubmit(e){
-      e.preventDefault();
+    // Handle form submit (Submit button)
+    function handleSubmit(event) {
+      event.preventDefault();
       submitForm("ยินยอม");
     }
 
-    // Submit Score
-    function submitScore(score){
+    // Handle score selection (just close modal for now)
+    function submitScore(score) {
+      const name = document.getElementById('name').value.trim();
+      const gender = document.getElementById('gender').value.trim();
+      const age = document.getElementById('age').value.trim();
+      const tel = document.getElementById('tel').value.trim();
+
+      const payload = {
+        name: name,
+        gender: gender,
+        age: age,
+        tel: tel,
+        consent: consentChoice,
+        score: score
+      };
+
       fetch(SCRIPT_URL, {
         method: 'POST',
-        body: JSON.stringify({
-          name: document.getElementById('name').value,
-          gender: document.getElementById('gender').value,
-          age: document.getElementById('age').value,
-          tel: document.getElementById('tel').value,
-          consent: consentChoice,
-          score: score
-        })
+        body: JSON.stringify(payload)
       })
-      .then(r => r.json())
-      .then(() => {
-        document.getElementById('result').innerText = "ส่งข้อมูลเรียบร้อยแล้ว (" + consentChoice + ")";
+      .then(response_obj => response_obj.json())        // Wait response + parse JSON
+      .then(() => {                                     // Use the JSON data for showing on Promotion Modal
+        // Close scoring modal
+        const scoringModal = bootstrap.Modal.getInstance(document.getElementById('scoringModal'));
+        scoringModal.hide();
+        
+
+        const promoMessage = name ? `ขอบคุณ คุณ<b>${name}</b> ที่ร่วมกิจกรรม! 🎉` : `ขอบคุณที่ร่วมกิจกรรม! 🎉`;
+        
+        // Write the Promotion Message
+        document.getElementById('promoMessage').innerHTML = promoMessage;
+        
+        // Show Promotion modal
+        const promoModal = new bootstrap.Modal(document.getElementById('promoModal'));
+        promoModal.show();
+        
+
         document.getElementById('consentForm').reset();
-
-        // close modal
-        const modalEl = document.getElementById('scoringModal');
-        const modal = bootstrap.Modal.getInstance(modalEl);
-        modal.hide();
-      });
+      })
+      .catch(err => {
+        console.log("Error sending data: ", err);
+        alert('Error Sending Data')
+      }); 
     }
-
   </script>
 
 
