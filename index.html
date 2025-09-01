@@ -119,7 +119,7 @@
         const name = document.getElementById('name').value.trim();
         const gender = document.getElementById('gender').value.trim();
         const age = document.getElementById('age').value.trim();
-        const tel = document.getElementById('tel').value.trim();
+        const tel = String(document.getElementById('tel').value).trim();
       }
 
       // Show scoring modal
@@ -138,7 +138,7 @@
       const name = document.getElementById('name').value.trim();
       const gender = document.getElementById('gender').value.trim();
       const age = document.getElementById('age').value.trim();
-      const tel = document.getElementById('tel').value.trim();
+      const tel = String(document.getElementById('tel').value).trim();
 
       const payload = {
         name: name,
