@@ -1,0 +1,20 @@
+ /* Default for mobile (normal weight, smaller text) */
+  .responsive-heading {
+    font-size: 1rem; /* same as fs-6 */
+    font-weight: 400; /* normal */
+  }
+
+  /* Tablet and up */
+  @media (min-width: 576px) {
+    .responsive-heading {
+      font-size: 1.25rem; /* like fs-5 */
+    }
+  }
+
+  /* Laptop and up */
+  @media (min-width: 768px) {
+    .responsive-heading {
+      font-size: 1.5rem; /* like fs-4 */
+      font-weight: 700; /* bold */
+    }
+  }
