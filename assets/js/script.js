@@ -9,12 +9,12 @@ function submitForm(userConsent) {
     consentChoice = userConsent;
     
     // Validate required fields only if ยินยอม
-    if (userConsent === "ยินยอม") {
-        const name = document.getElementById('name').value.trim();
-        const gender = document.getElementById('gender').value.trim();
-        const age = document.getElementById('age').value.trim();
-        const tel = document.getElementById('tel').value.trim();
-    }
+    // if (userConsent === "ยินยอม") {
+    //     const name = document.getElementById('name').value.trim();
+    //     const gender = document.getElementById('gender').value.trim();
+    //     const age = document.getElementById('age').value.trim();
+    //     const tel = document.getElementById('tel').value.trim();
+    // }
 
     // Show scoring modal
     const scoringModal = new bootstrap.Modal(document.getElementById('scoringModal'));
