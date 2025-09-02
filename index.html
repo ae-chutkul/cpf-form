@@ -2,6 +2,7 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Consent Form</title>
   <link rel="icon" type="image/png" href="assets/img/online-survey.png">
 
@@ -16,93 +17,93 @@
 </head>
 <body class="bg-light">
   
-  <!-- Centered container -->
-  <div class="container-fluid vh-100 d-flex justify-content-center align-items-center p-2">
-    <div class="card shadow-lg w-100" style="max-width: 480px;">
-      <div class="card-body p-3 p-sm-4">
-        
-        <!-- Heading -->
-        <h3 class="card-title text-center mb-4 fs-4">แบบสอบถามข้อมูลผู้เข้าร่วมทดลองชิมสินค้า</h3>
+<!-- Responsive container -->
+<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center p-2">
+  <div class="card shadow-lg w-100" style="max-width: 500px;">
+    <div class="card-body p-3 p-sm-4">
+      
+      <!-- Heading -->
+      <h3 class="card-title text-center mb-4 fs-4 fs-sm-3">
+        แบบสอบถามข้อมูลผู้เข้าร่วมทดลองชิมสินค้า
+      </h3>
 
-        <!-- Form -->
-        <form id="consentForm" onsubmit="handleSubmit(event)">
-          <div class="mb-3">
-            <label class="form-label">ชื่อ</label>
-            <input type="text" id="name" class="form-control py-2" required>
-          </div>
+      <!-- Form -->
+      <form id="consentForm" onsubmit="handleSubmit(event)">
+        <div class="mb-3">
+          <label class="form-label">ชื่อ</label>
+          <input type="text" id="name" class="form-control form-control-lg" required>
+        </div>
 
-          <div class="mb-3">
-            <label class="form-label">เพศ</label>
-            <select id="gender" class="form-select py-2" required>
-              <option value="">--เลือก--</option>
-              <option value="ชาย">ชาย</option>
-              <option value="หญิง">หญิง</option>
-              <option value="อื่นๆ">อื่นๆ</option>
-            </select>
-          </div>
+        <div class="mb-3">
+          <label class="form-label">เพศ</label>
+          <select id="gender" class="form-select form-select-lg" required>
+            <option value="">--เลือก--</option>
+            <option value="ชาย">ชาย</option>
+            <option value="หญิง">หญิง</option>
+            <option value="อื่นๆ">อื่นๆ</option>
+          </select>
+        </div>
 
-          <div class="mb-3">
-            <label class="form-label">อายุ</label>
-            <select id="age" class="form-select py-2" required>
-              <option value="">--เลือก--</option>
-              <option value="ต่ำกว่า 18 ปี">ต่ำกว่า 18 ปี</option>
-              <option value="18 - 24 ปี">18 - 24 ปี</option>
-              <option value="25 - 34 ปี">25 - 34 ปี</option>
-              <option value="35 - 44 ปี">35 - 44 ปี</option>
-              <option value="45 ปีขึ้นไป">45 ปีขึ้นไป</option>
-            </select>
-          </div>
+        <div class="mb-3">
+          <label class="form-label">อายุ</label>
+          <select id="age" class="form-select form-select-lg" required>
+            <option value="">--เลือก--</option>
+            <option value="ต่ำกว่า 18 ปี">ต่ำกว่า 18 ปี</option>
+            <option value="18 - 24 ปี">18 - 24 ปี</option>
+            <option value="25 - 34 ปี">25 - 34 ปี</option>
+            <option value="35 - 44 ปี">35 - 44 ปี</option>
+            <option value="45 ปีขึ้นไป">45 ปีขึ้นไป</option>
+          </select>
+        </div>
 
-          <div class="mb-3">
-            <label class="form-label">เบอร์โทรศัพท์</label>
-            <input type="tel" id="tel" class="form-control py-2" pattern="[0-9]{10}">
-          </div>
+        <div class="mb-3">
+          <label class="form-label">เบอร์โทรศัพท์</label>
+          <input type="tel" id="tel" class="form-control form-control-lg" pattern="[0-9]{10}">
+        </div>
 
-          <!-- Buttons -->
-          <div class="d-flex flex-column flex-sm-row justify-content-end gap-2">
-            <button type="button" class="btn btn-danger btn-lg mb-2 mb-sm-0" onclick="submitForm('ไม่ยินยอม')">ไม่ยินยอม</button>
-            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-          </div>
-        </form>
+        <!-- Buttons -->
+        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2">
+          <button type="button" class="btn btn-danger btn-lg mb-2 mb-sm-0" onclick="submitForm('ไม่ยินยอม')">ไม่ยินยอม</button>
+          <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </div>
+      </form>
 
-        <!-- Modals -->
-
-        <!-- Scoring Modal -->
-        <div class="modal fade" id="scoringModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-          <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">ให้คะแนน (1-5)</h5>
-              </div>
-              <div class="modal-body text-center">
-                <button class="btn btn-outline-primary btn-lg m-1" onclick="submitScore(1)">1</button>
-                <button class="btn btn-outline-primary btn-lg m-1" onclick="submitScore(2)">2</button>
-                <button class="btn btn-outline-primary btn-lg m-1" onclick="submitScore(3)">3</button>
-                <button class="btn btn-outline-primary btn-lg m-1" onclick="submitScore(4)">4</button>
-                <button class="btn btn-outline-primary btn-lg m-1" onclick="submitScore(5)">5</button>
-              </div>
+      <!-- Scoring Modal -->
+      <div class="modal fade" id="scoringModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">ให้คะแนน (1-5)</h5>
+            </div>
+            <div class="modal-body text-center">
+              <button class="btn btn-outline-primary btn-lg m-2" onclick="submitScore(1)">1</button>
+              <button class="btn btn-outline-primary btn-lg m-2" onclick="submitScore(2)">2</button>
+              <button class="btn btn-outline-primary btn-lg m-2" onclick="submitScore(3)">3</button>
+              <button class="btn btn-outline-primary btn-lg m-2" onclick="submitScore(4)">4</button>
+              <button class="btn btn-outline-primary btn-lg m-2" onclick="submitScore(5)">5</button>
             </div>
           </div>
         </div>
-
-        <!-- Promotion Modal -->
-        <div class="modal fade" id="promoModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-          <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">🎉 โปรโมชั่นพิเศษ</h5>
-              </div>
-              <div class="modal-body text-center">
-                <p id="promoMessage"></p>
-                <p class="fw-bold">โค้ดส่วนลด: <span class="text-success">PROMO123</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
+
+      <!-- Promotion Modal -->
+      <div class="modal fade" id="promoModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">🎉 โปรโมชั่นพิเศษ</h5>
+            </div>
+            <div class="modal-body text-center">
+              <p id="promoMessage"></p>
+              <p class="fw-bold">โค้ดส่วนลด: <span class="text-success">PROMO123</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
 
   <script>
 
